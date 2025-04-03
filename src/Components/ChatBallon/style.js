@@ -17,6 +17,8 @@ export const ChatBallonContainer = styled.div`
 export const Message = styled.p`
     color: ${props => props.isSender ? '#fff' : '#000'};
     font-size: 14px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 `;
 
 export const Sender = styled.p`

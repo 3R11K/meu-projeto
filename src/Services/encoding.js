@@ -15,8 +15,9 @@ export function encodeMessage(message, key) {
 
         return iv.toString(CryptoJS.enc.Hex) + ':' + encrypted.ciphertext.toString(CryptoJS.enc.Hex);
     } catch (error) {
-        alert(error.message);
-        throw error; // Re-throw the error if needed
+        alert("Erro ao cifrar a mensagem, verifique a chave.");
+        console.error(error.message);
+        throw error; // Re-throw the error after logging it
     }
 }
 
@@ -42,7 +43,8 @@ export function decodeMessage(encryptedMessage, key) {
 
         return decrypted.toString(CryptoJS.enc.Utf8);
     } catch (error) {
-        alert(error.message);
-        throw error; // Re-throw the error if needed
+        alert("Erro ao decifrar a mensagem, verifique a chave e o formato da mensagem.");
+        console.error(error.message);
+        throw error; // Re-throw the error after logging it
     }
 }
