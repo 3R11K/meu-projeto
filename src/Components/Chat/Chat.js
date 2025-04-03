@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ChatBallon from '../ChatBallon/ChatBallon';
 import { getContract } from '../../Services/GetContract';
+import { ChatContainer } from './style';
+import { decodeMessage } from '../../Services/encoding';
 
-export default function Chat() {
+export default function Chat({chave}) {
     const [messages, setMessages] = useState([]);
+    const chatRef = useRef(null);
 
     useEffect(() => {
         loadMessages(); // Carregar mensagens inicialmente
@@ -41,15 +44,17 @@ export default function Chat() {
     };
 
     return (
-        <>
+        <ChatContainer ref={chatRef}>
             {messages.map((message, index) => (
                 <ChatBallon 
                     key={index} 
                     message={message.text} 
                     sender={message.sender} 
                     isSender={message.isSender} 
+                    chave={chave}
+                    decodeMessage={decodeMessage} // Adicionando a função
                 />
             ))}
-        </>
+        </ChatContainer>
     );
 }
